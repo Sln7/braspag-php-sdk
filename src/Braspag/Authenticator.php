@@ -116,10 +116,8 @@ class Authenticator
         $curl = curl_init($url);
 
         $headers = [
-            'Accept: application/json',
-            'Authorization: Basic {base64}',
+            'Accept: */*',
             'Content-Type: application/x-www-form-urlencoded',
-            'Accept-Encoding: gzip',
             'User-Agent: Braspag/1.0 PHP SDK',
         ];
 
@@ -136,7 +134,7 @@ class Authenticator
         curl_setopt($curl, CURLOPT_USERPWD, "{$this->merchantId}:{$this->clientSecret}");
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-
+        
         $response = curl_exec($curl);
         $statusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 
